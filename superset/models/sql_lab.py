@@ -69,7 +69,10 @@ class Query(Model):
     start_running_time = Column(Numeric(precision=3))
     end_time = Column(Numeric(precision=3))
     changed_on = Column(
-        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=True)
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+        nullable=True)
 
     database = relationship(
         'Database',
@@ -121,7 +124,11 @@ class Query(Model):
         """Name property"""
         ts = datetime.now().isoformat()
         ts = ts.replace('-', '').replace(':', '').split('.')[0]
-        tab = self.tab_name.replace(' ', '_').lower() if self.tab_name else 'notab'
+        tab = (
+            self.tab_name.replace(' ', '_').lower()
+            if self.tab_name
+            else 'notab'
+        )
         tab = re.sub(r'\W+', '', tab)
         return "sqllab_{tab}_{ts}".format(**locals())
 

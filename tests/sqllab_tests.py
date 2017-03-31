@@ -10,7 +10,7 @@ import unittest
 
 from flask_appbuilder.security.sqla import models as ab_models
 from superset import db, utils, appbuilder, sm
-from superset.models.sql_lab import core as Query
+from superset.models.sql_lab import Query
 
 from .base_tests import SupersetTestCase
 

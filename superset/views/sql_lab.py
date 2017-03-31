@@ -26,12 +26,14 @@ appbuilder.add_view(
 class SavedQueryView(SupersetModelView, DeleteMixin):
     datamodel = SQLAInterface(SavedQuery)
     list_columns = [
-        'label', 'user', 'database', 'schema', 'description', 'pop_tab_link']
+        'label', 'user', 'database', 'schema', 'description',
+        'modified', 'pop_tab_link']
     show_columns = [
         'id', 'label', 'user', 'database',
         'description', 'sql', 'pop_tab_link']
     add_columns = ['label', 'database', 'description', 'sql']
     edit_columns = add_columns
+    base_order = ('changed_on', 'desc')
 
     def pre_add(self, obj):
         obj.user = g.user
